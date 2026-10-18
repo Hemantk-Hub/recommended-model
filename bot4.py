@@ -6,8 +6,7 @@ st.title("Movies Recommendation System")
 
 with open("movies.pickle", "rb") as m:
     movies = pickle.load(m)
-
-movies = movies.reset_index(drop=True)
+ 
 similarity = joblib.load("similarity.joblib")
 movie_titles = movies["title"].values
 
@@ -16,7 +15,7 @@ def recommend(name_movie, n=5):
         return []
 
     movie_index = movies[movies["title"] == name_movie].index[0]
-    distances = similarity[movie_index]
+    distances = similar[movie_index]
 
     top = sorted(enumerate(distances), key=lambda x: x[1], reverse=True)[1:n + 1]
 
